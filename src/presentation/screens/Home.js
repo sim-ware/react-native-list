@@ -51,7 +51,7 @@ export const Home = () => {
         <FlatList
           style={styles.participantList}
           data={data.characters.results}
-          keyExtractor={item => item.image} // image seemed the most unique out of all data fields
+          keyExtractor={item => item.id}
           renderItem={({item}) => (
             /*TODO TASK 04*/
             <TouchableOpacity
