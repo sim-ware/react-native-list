@@ -30,7 +30,11 @@ export default function App() {
             name="Participants"
             component={Home}
           />
-          <Stack.Screen name="Participant" component={Participant} />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Participant"
+            component={Participant}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>
