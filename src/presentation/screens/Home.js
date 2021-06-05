@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {useQuery} from '@apollo/client';
 import {GET_PARTICIPANTS} from '../../data/queries';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
@@ -32,6 +33,16 @@ const styles = StyleSheet.create({
 
 export const Home = () => {
   const {data} = useQuery(GET_PARTICIPANTS);
+  const navigation = useNavigation();
+
+  const onTouchableOpacityPress = item => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'Participant', params: item}],
+      }),
+    );
+  };
 
   /*TODO TASK 03*/
   return (
@@ -40,9 +51,12 @@ export const Home = () => {
         <FlatList
           style={styles.participantList}
           data={data.characters.results}
+          keyExtractor={item => item.id}
           renderItem={({item}) => (
             /*TODO TASK 04*/
-            <TouchableOpacity style={styles.participant}>
+            <TouchableOpacity
+              onPress={() => onTouchableOpacityPress(item)}
+              style={styles.participant}>
               <Image source={{uri: item.image}} style={styles.image} />
               <Text>{item.name}</Text>
             </TouchableOpacity>

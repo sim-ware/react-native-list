@@ -27,10 +27,14 @@ export default function App() {
           <Stack.Screen
             /*TODO TASK 01*/
             options={{animationEnabled: false}}
-            name="Home"
+            name="Participants"
             component={Home}
           />
-          <Stack.Screen name="Participant" component={Participant} />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Participant"
+            component={Participant}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>
